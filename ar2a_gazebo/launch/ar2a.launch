@@ -1,0 +1,19 @@
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find ar2a_gazebo)/worlds/ar2a.world" />
+    <arg name="gui" value="true" />
+  </include>
+  
+  <!-- urdf xml robot description loaded on the Parameter Server, converting the xacro into a proper urdf file-->
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find ar2a_description)/urdf/ar2a.xacro'" />
+  
+  <!-- push robot_description to factory and spawn robot in gazebo -->
+  <node name="ar2a_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param robot_description -model AR2A -x 0 -y 0 -z 0" />
+  
+  <!-- ros_control mybot launch file -->
+  <include file="$(find ar2a_control)/launch/ar2a_control.launch" />
+  
+  <!-- rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ar2a_gazebo)/launch/ar2a.rviz"/>
+  
+</launch>
