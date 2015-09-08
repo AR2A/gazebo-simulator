@@ -27,8 +27,8 @@ through it's sensors.
 
 To drive around, either start the turtle teleop node:
 
-* rosrun turtlesim turtle_teleop_key /turtle1/cmd_vel:=/mybot/cmd_vel
+* rosrun turtlesim turtle_teleop_key /turtle1/cmd_vel:=/AR2A/cmd_vel
 
 or the AR2A _robotcontrol_ node:
 
-* rosrun turtlesim robotcontrol /RobotControl:=/mybot/cmd_vel
+* rosrun robotcontrol robotcontrol_node /RobotControl:=/AR2A/cmd_vel
