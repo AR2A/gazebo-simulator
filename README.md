@@ -25,6 +25,14 @@ To start the simulation, run:
 This opens Gazebo as well as Rviz, in order to visualize what AR2A robot is seeing 
 through it's sensors.
 
+### Gazebo Screenshot
+
+<img style="float: middle;" src="https://github.com/AR2A/gazebo-simulator/blob/master/img/gazebo.png">
+
+### Rviz Screenshot
+
+<img style="float: middle;" src="https://github.com/AR2A/gazebo-simulator/blob/master/img/rviz.png">
+
 To drive around, either start the turtle teleop node:
 
 * rosrun turtlesim turtle_teleop_key /turtle1/cmd_vel:=/AR2A/cmd_vel
