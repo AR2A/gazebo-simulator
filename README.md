@@ -16,6 +16,7 @@ Make sure following ROS packages are installed:
 
 * ros-indigo-effort_controllers
 * ros-indigo-joint_state_controller
+* ros-indigo-hector-gazebo-plugins
 
 ## Starting the simulation
 To start the simulation, run:
@@ -35,8 +36,8 @@ through it's sensors.
 
 To drive around, either start the turtle teleop node:
 
-* rosrun turtlesim turtle_teleop_key /turtle1/cmd_vel:=/AR2A/cmd_vel
+* rosrun turtlesim turtle_teleop_key /turtle1/cmd_vel:=/cmd_vel
 
 or the AR2A _robotcontrol_ node:
 
-* rosrun robotcontrol robotcontrol_node /RobotControl:=/AR2A/cmd_vel
+* rosrun robotcontrol robotcontrol_node /RobotControl:=/cmd_vel
