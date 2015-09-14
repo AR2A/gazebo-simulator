@@ -29,7 +29,7 @@
   </gazebo-->
   
   <!-- Skid Steering Drive -->
-  <gazebo>
+  <!--gazebo>
     <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
       <updateRate>100.0</updateRate>
       <robotNamespace>/AR2A</robotNamespace>
@@ -44,7 +44,25 @@
       <topicName>cmd_vel</topicName>      
       <broadcastTF>false</broadcastTF>
     </plugin>
+  </gazebo-->
+    
+  <gazebo>
+    <plugin name="diffdrive_plugin_multiwheel" filename="libdiffdrive_plugin_multi_wheel.so">                
+      <alwaysOn>true</alwaysOn>
+      <updateRate>100.0</updateRate>
+      <leftJoints>left_front_wheel_joint left_middle_wheel_joint left_back_wheel_joint</leftJoints>
+      <rightJoints>right_front_wheel_joint right_middle_wheel_joint right_back_wheel_joint</rightJoints>
+      <wheelSeparation>${chassisWidth+wheelWidth}</wheelSeparation>
+      <wheelDiameter>${wheelRadius*2}</wheelDiameter>
+      <torque>50000</torque>
+      <position name="position_iface_2"/>      
+      <robotBaseFrame>chassis</robotBaseFrame>
+      <commandTopic>/cmd_vel</commandTopic>
+      <publishOdometryTf>0</publishOdometryTf>
+      <publishOdometryMsg>1</publishOdometryMsg>
+    </plugin>
   </gazebo>
+    
     
   <gazebo reference="camera_link">  
     <sensor type="depth" name="camera">

@@ -7,13 +7,10 @@
   <xacro:property name="chassisHeight" value="0.2"/>  
   <xacro:property name="chassisLength" value="0.45"/>  
   <xacro:property name="chassisWidth" value="0.25"/>
-  <xacro:property name="chassisMass" value="60"/>
-  
-  <xacro:property name="casterRadius" value="0.05"/>
-  <xacro:property name="casterMass" value="5"/>
+  <xacro:property name="chassisMass" value="6"/>  
   
   <xacro:property name="wheelWidth" value="0.05"/>
-  <xacro:property name="wheelRadius" value="0.05"/>
+  <xacro:property name="wheelRadius" value="0.05"/>  
   <xacro:property name="wheelPos" value="0.2"/>
   <xacro:property name="wheelMass" value="5"/>
   
@@ -26,6 +23,7 @@
   <xacro:include filename="$(find ar2a_description)/urdf/ar2a.gazebo" />
   <xacro:include filename="$(find ar2a_description)/urdf/materials.xacro" />
   <xacro:include filename="$(find ar2a_description)/urdf/macros.xacro" />
+  <xacro:include filename="$(find ar2a_description)/urdf/kinect.xacro" />
   
   <link name="footprint" />
 
@@ -35,12 +33,14 @@
   </joint>
   
   <link name='chassis'>
+    
     <collision> 
       <origin xyz="0 0 ${chassisGround}" rpy="0 0 0"/> 
       <geometry> 
         <box size="${chassisLength} ${chassisWidth} ${chassisHeight}"/> 
       </geometry> 
     </collision>
+    
     <visual> 
       <origin xyz="0 0 ${chassisGround}" rpy="0 0 0"/> 
       <geometry> 
@@ -48,6 +48,7 @@
       </geometry> 
       <material name="orange"/>
     </visual>
+    
     <inertial> 
       <origin xyz="0 0 ${chassisGround}" rpy="0 0 0"/> 
       <mass value="${chassisMass}"/> 
@@ -55,105 +56,13 @@
     </inertial>
   </link>
   
-  <wheel lr="left_front" fb="1" tY="1"/>
-  <wheel lr="right_front" fb="1" tY="-1"/>
-  <wheel lr="left_back" fb="-1" tY="1"/>
-  <wheel lr="right_back" fb="-1" tY="-1"/>
-    
-  <!-- Kinect Camera -->
-  <joint name="kinect_camera_joint" type="fixed">    
-    <axis xyz="0 1 0" />
-    <origin xyz="${cameraPosX} ${cameraPosY} ${cameraPosZ}" rpy="0 0 0"/>
-    <parent link="chassis" />
-    <child link="camera_link" />
-  </joint>
-  
-  <link name="camera_link">
-    <inertial>
-      <mass value="0.01" />
-      <origin xyz="${cameraPosX} ${cameraPosY} ${cameraPosZ}" />
-      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
-       iyy="0.001" iyz="0.0"
-       izz="0.001" />
-    </inertial>
-
-    <visual>
-      <origin xyz="${cameraPosX} ${cameraPosY} ${cameraPosZ}" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="package://ar2a_description/meshes/kinect.dae"/>
-      </geometry>
-    </visual>
-
-    <collision>
-      <origin xyz="${cameraPosX} ${cameraPosY} ${cameraPosZ}" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="package://ar2a_description/meshes/kinect.dae"/>
-      </geometry>
-    </collision>
-  </link>
-  
-  <joint name="camera_depth_joint" type="fixed">
-    <origin xyz="0 0.018 0" rpy="0 0 0" />
-    <parent link="camera_link" />
-    <child link="camera_depth_frame" />
-  </joint>
-
-  <link name="camera_depth_frame">
-    <inertial>
-      <mass value="0.01" />
-      <origin xyz="0 0 0" />
-      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
-       iyy="0.001" iyz="0.0"
-       izz="0.001" />
-    </inertial>
-  </link>
-  
-  <joint name="camera_depth_optical_joint" type="fixed">
-    <origin xyz="0 0 0" rpy="${-PI/2} 0 ${-PI/2}" />
-    <parent link="camera_depth_frame" />
-    <child link="camera_depth_optical_frame" />
-  </joint>
-
-  <link name="camera_depth_optical_frame">
-    <inertial>
-      <mass value="0.001" />
-      <origin xyz="0 0 0" />
-      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
-       iyy="0.0001" iyz="0.0"
-       izz="0.0001" />
-    </inertial>
-  </link>
-  
-  <joint name="camera_rgb_joint" type="fixed">
-    <origin xyz="0 -0.005 0" rpy="0 0 0" />
-    <parent link="camera_link" />
-    <child link="camera_rgb_frame" />
-  </joint>
-
-  <link name="camera_rgb_frame">
-    <inertial>
-      <mass value="0.001" />
-      <origin xyz="0 0 0" />
-      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
-       iyy="0.0001" iyz="0.0"
-       izz="0.0001" />
-    </inertial>
-  </link>
-
-  <joint name="camera_rgb_optical_joint" type="fixed">
-    <origin xyz="0 0 0" rpy="${-PI/2} 0 ${-PI/2}" />
-    <parent link="camera_rgb_frame" />
-    <child link="camera_rgb_optical_frame" />
-  </joint>
-  
-  <link name="camera_rgb_optical_frame">
-    <inertial>
-      <mass value="0.001" />
-      <origin xyz="0 0 0" />
-      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
-       iyy="0.0001" iyz="0.0"
-       izz="0.0001" />
-    </inertial>
-  </link>
+  <wheel lr="left_front" x_pos="${wheelPos}" y_pos="${wheelWidth/2+chassisWidth/2}"/>
+  <wheel lr="left_middle" x_pos="0.0" y_pos="${wheelWidth/2+chassisWidth/2}"/>
+  <wheel lr="left_back" x_pos="${-wheelPos}" y_pos="${wheelWidth/2+chassisWidth/2}"/>
+  <wheel lr="right_front" x_pos="${wheelPos}" y_pos="${-wheelWidth/2-chassisWidth/2}"/>
+  <wheel lr="right_middle" x_pos="0.0" y_pos="${-wheelWidth/2-chassisWidth/2}"/>
+  <wheel lr="right_back" x_pos="${-wheelPos}" y_pos="${-wheelWidth/2-chassisWidth/2}"/>
+      
+  <kinect_camera/>
 
 </robot>

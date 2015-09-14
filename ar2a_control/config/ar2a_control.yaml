@@ -8,17 +8,25 @@ AR2A:
   # Effort Controllers ---------------------------------------
   leftFrontWheel_effort_controller:
     type: effort_controllers/JointEffortController
-    joint: left_front_wheel_hinge
+    joint: left_front_wheel_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  leftMiddleWheel_effort_controller:
+    type: effort_controllers/JointEffortController
+    joint: left_middle_wheel_joint
     pid: {p: 100.0, i: 0.01, d: 10.0}
   leftBackWheel_effort_controller:
     type: effort_controllers/JointEffortController
-    joint: left_back_wheel_hinge
+    joint: left_back_wheel_joint
     pid: {p: 100.0, i: 0.01, d: 10.0}
   rightFrontWheel_effort_controller:
     type: effort_controllers/JointEffortController
-    joint: right_front_wheel_hinge
+    joint: right_front_wheel_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  rightMiddleWheel_effort_controller:
+    type: effort_controllers/JointEffortController
+    joint: right_middle_wheel_joint
     pid: {p: 100.0, i: 0.01, d: 10.0}
   rightBackWheel_effort_controller:
     type: effort_controllers/JointEffortController
-    joint: right_back_wheel_hinge
+    joint: right_back_wheel_joint
     pid: {p: 100.0, i: 0.01, d: 10.0}

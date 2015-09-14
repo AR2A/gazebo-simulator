@@ -8,8 +8,10 @@
     output="screen" ns="/AR2A" 
     args="joint_state_controller
       rightFrontWheel_effort_controller
+      rightMiddleWheel_effort_controller
       rightBackWheel_effort_controller
       leftFrontWheel_effort_controller
+      leftMiddleWheel_effort_controller
       leftBackWheel_effort_controller" />
       
   <!-- convert joint states to TF transforms for rviz, etc -->
