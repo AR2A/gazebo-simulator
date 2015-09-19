@@ -3,20 +3,25 @@
 This repository contains all files for the rescue robot gazebo simulator.
 
 ## Preparation
-In order to use the _AR2A_ robot inside Gazebo, create following three packages
+### Dependencies
+Make sure following ROS packages are installed:
+
+* ros-indigo-effort_controllers
+* ros-indigo-joint_state_controller
+* ros-indigo-hector-gazebo-plugins
+
+    sudo apt-get install ros-indigo-effort_controllers ros-indigo-joint_state_controller ros-indigo-hector-gazebo-plugins
+
+### Clone
+In order to use the _AR2A_ robot inside Gazebo, clone this repository and copy this three packages
 inside your _catkin workspace_:
 
 * ar2a_control
 * ar2a_description
 * ar2a_gazebo
 
-and copy the content from the repository into these folders.
-
-Make sure following ROS packages are installed:
-
-* ros-indigo-effort_controllers
-* ros-indigo-joint_state_controller
-* ros-indigo-hector-gazebo-plugins
+    git clone https://github.com/AR2A/gazebo-simulator
+    cp -av ./gazebo-simulator/ar2a* /your/catkin_workspace
 
 ## Starting the simulation
 To start the simulation, run:
