@@ -30,7 +30,9 @@ cp -av ./gazebo-simulator/ar2a* /your/catkin_workspace
 ## Starting the simulation
 To start the simulation, run:
 
- * roslaunch ar2a_gazebo ar2a.launch
+```
+roslaunch ar2a_gazebo ar2a.launch
+```
 
 This opens Gazebo as well as Rviz, in order to visualize what AR2A robot is seeing 
 through it's sensors.
@@ -45,8 +47,12 @@ through it's sensors.
 
 To drive around, either start the turtle teleop node:
 
-* rosrun turtlesim turtle_teleop_key /turtle1/cmd_vel:=/cmd_vel
+```
+rosrun turtlesim turtle_teleop_key /turtle1/cmd_vel:=/cmd_vel
+```
 
 or the AR2A _robotcontrol_ node:
 
-* rosrun robotcontrol robotcontrol_node /RobotControl:=/cmd_vel
+```
+rosrun robotcontrol robotcontrol_node /RobotControl:=/cmd_vel
+```
