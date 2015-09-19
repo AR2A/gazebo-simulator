@@ -10,7 +10,9 @@ Make sure following ROS packages are installed:
 * ros-indigo-joint_state_controller
 * ros-indigo-hector-gazebo-plugins
 
-    sudo apt-get install ros-indigo-effort_controllers ros-indigo-joint_state_controller ros-indigo-hector-gazebo-plugins
+```
+sudo apt-get install ros-indigo-effort_controllers ros-indigo-joint_state_controller ros-indigo-hector-gazebo-plugins
+```
 
 ### Clone
 In order to use the _AR2A_ robot inside Gazebo, clone this repository and copy this three packages
@@ -20,8 +22,10 @@ inside your _catkin workspace_:
 * ar2a_description
 * ar2a_gazebo
 
-    git clone https://github.com/AR2A/gazebo-simulator
-    cp -av ./gazebo-simulator/ar2a* /your/catkin_workspace
+```
+git clone https://github.com/AR2A/gazebo-simulator.git
+cp -av ./gazebo-simulator/ar2a* /your/catkin_workspace
+```
 
 ## Starting the simulation
 To start the simulation, run:
